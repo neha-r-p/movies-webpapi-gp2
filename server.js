@@ -8,13 +8,57 @@ const express = require('express');
 
 const server = express();
 
+let actors = [
+  {
+    id: 1,
+    name: 'Elijah Wood',
+    movies: [1, 2],
+  },
+  {
+    id: 2,
+    name: 'Chris Evans',
+    movies: [4],
+  },
+];
+let movies = [
+  {
+    id: 1,
+    name: 'The Fellowship of the Ring',
+    released: true,
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'The Two Towers',
+    released: true,
+    rating: 4,
+  },
+  {
+    id: 3,
+    name: 'The Children of Hurin',
+    released: false,
+    rating: null,
+  },
+  {
+    id: 4,
+    name: 'Avengers Endgame',
+    released: true,
+    rating: 5,
+  },
+];
+
+// sanity check endpoint
 server.get('/', (req, res) => {
-    res.status(200).json({ api: 'up...'})
-})
+  res.status(200).json({ api: 'up...' });
+});
+
+server.get('/api/movies', (req, res) => {
+  res.status(200).json(movies);
+  
+});
 
 
-module.exports = server // commonJS modules (node)
-//module.exports = { server } // commonJS modules (node)
 
-// exports.add = (a, b) => { return a + b }
-// exports.secret = 'keep it secret, keep it safe'
+// export default server; // ES2015 modules
+// module.exports = { server }; // CommonJS modules (node)
+module.exports = server; // CommonJS modules (node)
